@@ -9,6 +9,12 @@ function getDiceRollArray(diceCount){
     return diceRollArray;
 }
 
+function getDiceHtml(diceCount){
+    return getDiceRollArray(diceCount).map(function(dice){
+        return `<div class="dice">${dice}</div>`;
+    }).join('');
+}
+
 console.log(getDiceRollArray(3));
 
 const hero = {
@@ -34,9 +40,7 @@ function renderCharacter(data){
 
         const { elementId, name, avatar, health, diceRoll, diceCount } = data;
 
-        const diceHtml = diceRoll.map(function(dice){
-            return `<div class="dice">${dice}</div>`;
-        }).join('');
+        const diceHtml = getDiceHtml(diceCount);
 
 
         document.getElementById(`${data.elementId}`).innerHTML = `<div class="character-card">
