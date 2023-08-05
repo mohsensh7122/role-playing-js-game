@@ -21,11 +21,10 @@ function renderCharacter(data){
 
         const { elementId, name, avatar, health, diceRoll, diceCount } = data;
 
-        let diceHtml = ``;
+        const diceHtml = diceRoll.map(function(dice){
+            return `<div class="dice">${dice}</div>`;
+        }).join('');
 
-        for(let i = 0; i < diceCount; i++){
-            diceHtml += `<div class="dice">${diceRoll[i]}</div>`;
-        }
 
         document.getElementById(`${data.elementId}`).innerHTML = `<div class="character-card">
         <h4 class="name"> ${name} </h4>
