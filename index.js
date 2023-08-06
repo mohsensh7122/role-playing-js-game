@@ -40,12 +40,9 @@ function Character(data){
     this.avatar = data.avatar;
     this.health = data.health;
     this.diceCount = data.diceCount;
-}
 
-
-function renderCharacter(data){
-
-        const { elementId, name, avatar, health, diceCount } = data;
+    this.getCharacterHtml = function(){
+        const { elementId, name, avatar, health, diceCount } = this;
 
         const diceHtml = getDiceHtml(diceCount);
 
@@ -58,8 +55,13 @@ function renderCharacter(data){
             ${diceHtml}
         </div>
     </div>`
+    }
+
 }
 
-renderCharacter(hero);
-renderCharacter(monster);
 
+const wizard = new Character(hero);
+const orc = new Character(monster);
+
+wizard.getCharacterHtml();
+orc.getCharacterHtml();
