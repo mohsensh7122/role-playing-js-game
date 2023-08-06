@@ -15,7 +15,7 @@ function getDiceHtml(diceCount){
     }).join('');
 }
 
-console.log(getDiceRollArray(3));
+
 
 const hero = {
     elementId: "hero",
@@ -31,6 +31,15 @@ const monster = {
     avatar: "images/orc.png",
     health: 10,
     diceCount: 1
+}
+
+
+function Character(data){
+    this.elementId = data.elementId;
+    this.name = data.name;
+    this.avatar = data.avatar;
+    this.health = data.health;
+    this.diceCount = data.diceCount;
 }
 
 
