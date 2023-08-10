@@ -26,7 +26,12 @@ to reduce attackScoreArray to a single number.
             return total + num;
         })
 
-        this.health -= totalAttackScore; 
+        this.health -= totalAttackScore;
+
+        if (this.health <= 0){
+            this.health = 0; 
+        }
+        
     }
     
     this.getCharacterHtml = function () {
