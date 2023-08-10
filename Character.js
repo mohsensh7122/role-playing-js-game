@@ -10,7 +10,24 @@ function Character(data) {
         this.diceArray = this.currentDiceScore.map(function(num){
             return `<div class="dice">${num}</div>`;
         }).join('');
-    } 
+    }
+
+    this.takeDamage = function(attackScoreArray){
+
+        /*
+CHALLENGE
+1. In the takeDamage method, use what you have just learned
+to reduce attackScoreArray to a single number.
+2. Store that number in a const called totalAttackScore
+3. Decrement the health score by totalAttackScore
+*/
+        
+        const totalAttackScore = attackScoreArray.reduce(function(total, num){
+            return total + num;
+        })
+
+        this.health -= totalAttackScore; 
+    }
     
     this.getCharacterHtml = function () {
         const { elementId, name, avatar, health, diceCount } = this;      
