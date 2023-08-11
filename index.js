@@ -11,6 +11,19 @@ function attack(){
     wizard.takeDamage(orc.currentDiceScore);
     orc.takeDamage(wizard.currentDiceScore);
     render();
+
+    if(wizard.dead === true || orc.dead === true){
+        endGame();
+    }
+}
+
+function endGame(){
+    const endMessage = wizard.health === 0 && orc.health === 0 ?
+    "No victors - all creatures are dead" :
+    wizard.health > 0 ?
+    "The Wizard Wins" :
+    "The Orc is Victorious";
+    console.log(endMessage);
 }
 
 document.getElementById('attack-button').addEventListener('click', attack);

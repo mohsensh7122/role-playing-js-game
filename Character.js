@@ -14,13 +14,7 @@ function Character(data) {
 
     this.takeDamage = function(attackScoreArray){
 
-        /*
-CHALLENGE
-1. In the takeDamage method, use what you have just learned
-to reduce attackScoreArray to a single number.
-2. Store that number in a const called totalAttackScore
-3. Decrement the health score by totalAttackScore
-*/
+
         
         const totalAttackScore = attackScoreArray.reduce(function(total, num){
             return total + num;
@@ -29,6 +23,7 @@ to reduce attackScoreArray to a single number.
         this.health -= totalAttackScore;
 
         if (this.health <= 0){
+            this.dead = true;
             this.health = 0; 
         }
         
