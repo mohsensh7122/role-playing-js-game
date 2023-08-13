@@ -2,11 +2,15 @@ import characterData from "./data.js";
 import Character from "./Character.js";
 
 
-const wizard = new Character(characterData.hero);
-const orc = new Character(characterData.monster);
-
 let monstersArray = ["orc", "demon", "goblin"];
 
+function getNewMonster(){
+    const nextMonsterData = characterData[monstersArray.shift()];
+
+    // The code below is a ternary option that checks if nextMonsterData returns anything. If it does, it creates a new instance of Character using the monstersArray.
+
+    return nextMonsterData ? new Character(nextMonsterData) : {}
+}
 
 function attack(){
     wizard.getDiceHtml();
@@ -43,6 +47,9 @@ function render(){
     document.getElementById('hero').innerHTML = wizard.getCharacterHtml();
     document.getElementById('monster').innerHTML = orc.getCharacterHtml();
 }
+
+const wizard = new Character(characterData.hero);
+let monster = getNewMonster()
 
 render();
 
