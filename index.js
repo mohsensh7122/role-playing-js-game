@@ -25,8 +25,14 @@ function attack(){
     }
     else if(monster.dead){
         if(monstersArray.length > 0){
-            monster = getNewMonster()
-            render()
+
+            // Added a 1.2s delay between one monster dying and the second one appearing on the screen
+            setTimeout(() => {
+                monster = getNewMonster()
+                render()
+            }, 1200)
+
+            
         }
         else{
             endGame()
@@ -44,11 +50,14 @@ function endGame(){
 
     const endEmoji = wizard.health > 0 ? "🔮" : "☠️";
 
-    document.body.innerHTML = `<div class="end-game">
-    <h2>Game Over</h2>
-    <h3>${endMessage}</h3>
-    <p class="end-emoji">${endEmoji}</p>
-    </div>`
+    setTimeout(() => {
+        document.body.innerHTML = `<div class="end-game">
+        <h2>Game Over</h2>
+        <h3>${endMessage}</h3>
+        <p class="end-emoji">${endEmoji}</p>
+        </div>`
+    }, 1200)
+    
 }
 
 document.getElementById('attack-button').addEventListener('click', attack);
