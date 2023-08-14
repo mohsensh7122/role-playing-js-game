@@ -3,6 +3,7 @@ import Character from "./Character.js";
 
 
 let monstersArray = ["orc", "demon", "goblin"];
+let isWaiting = false;
 
 function getNewMonster(){
     const nextMonsterData = characterData[monstersArray.shift()];
@@ -14,7 +15,8 @@ function getNewMonster(){
 }
 
 function attack(){
-    wizard.getDiceHtml();
+    if(!isWaiting){
+        wizard.getDiceHtml();
     monster.getDiceHtml();
     wizard.takeDamage(monster.currentDiceScore);
     monster.takeDamage(wizard.currentDiceScore);
@@ -24,12 +26,14 @@ function attack(){
         endGame()
     }
     else if(monster.dead){
+        isWaiting = true;
         if(monstersArray.length > 0){
 
             // Added a 1.2s delay between one monster dying and the second one appearing on the screen
             setTimeout(() => {
                 monster = getNewMonster()
                 render()
+                isWaiting = false;
             }, 1200)
 
             
@@ -38,9 +42,12 @@ function attack(){
             endGame()
         }
     }
+    }
+    
 }
 
 function endGame(){
+    isWaiting = true;
     const endMessage = wizard.health === 0 && monster.health === 0 ?
     "No victors - all creatures are dead" :
     wizard.health > 0 ?
