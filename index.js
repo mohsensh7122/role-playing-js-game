@@ -16,11 +16,11 @@ function getNewMonster(){
 
 function attack(){
     if(!isWaiting){
-        wizard.getDiceHtml();
-    monster.getDiceHtml();
-    wizard.takeDamage(monster.currentDiceScore);
-    monster.takeDamage(wizard.currentDiceScore);
-    render();
+        wizard.setDiceHtml();
+        monster.setDiceHtml();
+        wizard.takeDamage(monster.currentDiceScore);
+        monster.takeDamage(wizard.currentDiceScore);
+        render();
 
     if(wizard.dead){
         endGame()
@@ -52,7 +52,7 @@ function endGame(){
     "No victors - all creatures are dead" :
     wizard.health > 0 ?
     "The Wizard Wins" :
-    "The Monster is Victorious";
+    "The Monsters are Victorious";
 
 
     const endEmoji = wizard.health > 0 ? "🔮" : "☠️";
